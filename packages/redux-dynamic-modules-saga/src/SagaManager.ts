@@ -1,17 +1,22 @@
 import { ISagaRegistration, ISagaWithArguments } from "./Contracts";
 import { SagaMiddleware, Task } from "redux-saga";
 import { sagaEquals } from "./SagaComparer";
-import { IItemManager, getMap } from "redux-dynamic-modules-core";
+import { IItemManager, getMap, IMap } from "redux-dynamic-modules-core";
+
+export interface ISagaItemManager<T> extends IItemManager<T> {
+    tasks: IMap<ISagaRegistration<any>, Task>;
+}
 
 /**
  * Creates saga items which can be used to start and stop sagas dynamically
  */
 export function getSagaManager(
     sagaMiddleware: SagaMiddleware<any>
-): IItemManager<ISagaRegistration<any>> {
+): ISagaItemManager<ISagaRegistration<any>> {
     const tasks = getMap<ISagaRegistration<any>, Task>(sagaEquals);
 
     return {
+        tasks,
         getItems: (): ISagaRegistration<any>[] => [...tasks.keys],
         add: (sagas: ISagaRegistration<any>[]) => {
             if (!sagas) {

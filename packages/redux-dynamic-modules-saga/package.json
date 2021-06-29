@@ -1,10 +1,10 @@
 {
-    "name": "redux-dynamic-modules-saga",
+    "name": "@yarigo/redux-dynamic-modules-saga",
     "version": "5.2.3",
-    "description": "Saga Extension for redux-dynamic-modules",
+    "description": "Saga Extension for redux-dynamic-modules (fork https://github.com/microsoft/redux-dynamic-modules)",
     "repository": {
         "type": "github",
-        "url": "https://github.com/Microsoft/redux-dynamic-modules"
+        "url": "https://github.com/yarigo/redux-dynamic-modules"
     },
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
